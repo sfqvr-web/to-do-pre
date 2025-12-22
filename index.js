@@ -1,4 +1,4 @@
-let items = [
+const items = [
   "Сделать проектную работу",
   "Полить цветы",
   "Пройти туториал по Реакту",
@@ -82,21 +82,17 @@ formElement.addEventListener('submit', function(event) {
   event.preventDefault();
 
   const taskText = inputElement.value.trim();
-
-  if (taskText !== '') {
-    const newItem = createItem(taskText);
-    listElement.prepend(newItem);
-    const items = getTasksFromDOM();
-    saveTasks(items);
-    inputElement.value = '';
-  } else {
-    alert('Уважаемый пользователь, Вы, пытаетесь добавить пустую задачу!')
-  }
+  const newItem = createItem(taskText);
+  listElement.prepend(newItem);
+  const items = getTasksFromDOM();
+  saveTasks(items);
+  inputElement.value = '';
 });
 
 // Инициализация приложения
-items = loadTasks();
-items.forEach(function(item) {
+
+let currentTasks = loadTasks();
+currentTasks.forEach(function(item) {
     const itemElement = createItem(item);
     listElement.append(itemElement);
 });
